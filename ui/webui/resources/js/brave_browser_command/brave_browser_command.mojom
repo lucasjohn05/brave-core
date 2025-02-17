@@ -15,7 +15,8 @@ enum Command {
   kOpenRewardsOnboarding = 1,
   kOpenWalletOnboarding = 2,
   kOpenVPNOnboarding = 3,
-  kOpenAIChat = 4
+  kOpenAIChat = 4,
+  kUpdateAdblockList = 5
 };
 
 // Implemented by the Brave Education WebUIs that provide
