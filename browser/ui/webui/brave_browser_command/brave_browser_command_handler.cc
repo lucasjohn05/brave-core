@@ -83,6 +83,9 @@ void BraveBrowserCommandHandler::CanExecuteCommand(
     case brave_browser_command::mojom::Command::kOpenAIChat:
       can_execute = CanShowAIChat(profile_);
       break;
+    case brave_browser_command::mojom::Command::kUpdateAdblockList:
+      can_execute = true;
+      break;
   }
   std::move(callback).Run(can_execute);
 }
@@ -114,6 +117,13 @@ void BraveBrowserCommandHandler::ExecuteCommand(
     case brave_browser_command::mojom::Command::kOpenAIChat:
       delegate_->OpenAIChat();
       break;
+
+    case brave_browser_command::mojom::Command::kUpdateAdblockList:
+      if (auto* adblock_service = brave::AdBlockFactory::GetForBrowserContext(profile_)) {
+      adblock_service->UpdateAdBlockLists();
+      }
+      break;
+   
   }
 
   std::move(callback).Run(true);
